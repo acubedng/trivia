@@ -20,8 +20,11 @@ class ScoreFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_score, container, false)
 
         val scoreArgs: ScoreFragmentArgs by navArgs()
-
         viewModel = ViewModelProvider(this, ScoreViewModelFactory(scoreArgs.score)).get(ScoreViewModel::class.java)
+
+        binding.scoreViewModel = viewModel
+        binding.lifecycleOwner = this
+
         return binding.root
     }
 }

@@ -2,6 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="scoreViewModel"
+            type="com.vague.android.trivia.score.ScoreViewModel" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -20,6 +27,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:text="@{String.valueOf(scoreViewModel.score)}"
             android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
             tools:text="23" />
 
