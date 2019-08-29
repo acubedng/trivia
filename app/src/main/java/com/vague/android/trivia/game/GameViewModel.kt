@@ -62,6 +62,10 @@ class GameViewModel : ViewModel() {
         }
     }
 
+    fun gameFinishedHandled() {
+        _gameFinished.value = false
+    }
+
     fun correct() {
         _score.value = _score.value?.plus(1)
         setNextQuestion()

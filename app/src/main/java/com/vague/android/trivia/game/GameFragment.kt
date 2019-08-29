@@ -30,6 +30,7 @@ class GameFragment : Fragment() {
                 viewModel.score.value?.let {
                     findNavController().navigate(GameFragmentDirections.actionGameFragmentToScoreFragment(it))
                 }
+                viewModel.gameFinishedHandled()
             }
         })
 
