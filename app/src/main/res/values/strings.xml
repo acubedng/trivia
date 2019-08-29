@@ -8,4 +8,5 @@
     <string name="skip">Skip</string>
     <string name="correct">Correct</string>
     <string name="question_num">%d/%d</string>
+    <string name="score_format">Score: %d</string>
 </resources>

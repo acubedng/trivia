@@ -27,7 +27,9 @@ class GameFragment : Fragment() {
 
         viewModel.gameFinished.observe(this, Observer { gameFinished ->
             if (gameFinished) {
-                findNavController().navigate(R.id.action_gameFragment_to_scoreFragment)
+                viewModel.score.value?.let {
+                    findNavController().navigate(GameFragmentDirections.actionGameFragmentToScoreFragment(it))
+                }
             }
         })
 

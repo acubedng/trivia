@@ -13,6 +13,10 @@ class GameViewModel : ViewModel() {
     val questionNum: LiveData<Int>
         get() = _questionNum
 
+    private val _score = MutableLiveData<Int>(0)
+    val score: LiveData<Int>
+        get() = _score
+
     private val _questionTime = MutableLiveData<Long>()
     val questionTimeString: LiveData<String>
         get() = Transformations.map(_questionTime) { timeLong ->
@@ -56,6 +60,15 @@ class GameViewModel : ViewModel() {
             _questionNum.value = _questionNum.value?.plus(1)
             startCountDownTimer()
         }
+    }
+
+    fun correct() {
+        _score.value = _score.value?.plus(1)
+        setNextQuestion()
+    }
+
+    fun skip() {
+        setNextQuestion()
     }
 
     private fun startCountDownTimer() {
