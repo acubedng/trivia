@@ -91,7 +91,7 @@ class GameViewModel : ViewModel() {
 
     companion object {
         const val SECOND: Long = 1000
-        const val QUESTION_TIME: Long = 10000
+        const val QUESTION_TIME: Long = 15000
 
         const val TAG = "GameViewModel"
     }
