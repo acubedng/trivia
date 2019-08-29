@@ -9,4 +9,6 @@
     <string name="correct">Correct</string>
     <string name="question_num">%d/%d</string>
     <string name="score_format">Score: %d</string>
+    <string name="your_score">Your Score</string>
+    <string name="play_again">Play Again</string>
 </resources>
