@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.vague.android.trivia.R
 import com.vague.android.trivia.databinding.FragmentGameBinding
 
@@ -22,6 +24,12 @@ class GameFragment : Fragment() {
 
         binding.gameViewModel = viewModel
         binding.lifecycleOwner = this
+
+        viewModel.gameFinished.observe(this, Observer {
+            if (it) {
+                findNavController().navigate(R.id.action_gameFragment_to_scoreFragment)
+            }
+        })
 
         return binding.root
     }

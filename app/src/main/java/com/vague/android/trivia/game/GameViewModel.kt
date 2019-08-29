@@ -15,9 +15,13 @@ class GameViewModel : ViewModel() {
             DateUtils.formatElapsedTime(timeLong)
         }
 
+    private val _currentQuestion = MutableLiveData<String>()
+    val currentQuestion: LiveData<String>
+        get() = _currentQuestion
+
     private val countDownTimer = object : CountDownTimer(QUESTION_TIME, SECOND) {
         override fun onFinish() {
-            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            setNextQuestion()
         }
 
         override fun onTick(p0: Long) {
@@ -25,8 +29,26 @@ class GameViewModel : ViewModel() {
         }
     }
 
+    private val _gameFinished = MutableLiveData<Boolean>(false)
+    val gameFinished: LiveData<Boolean>
+        get() = _gameFinished
+
+    private val questionsGenerator = QuestionsGenerator()
+
     init {
+        _currentQuestion.value = questionsGenerator.getNextQuestion()
         startCountDownTimer()
+    }
+
+    private fun setNextQuestion() {
+        val nextQuestion = questionsGenerator.getNextQuestion()
+        if (nextQuestion == null) {
+            _gameFinished.value = true
+            stopCountDownTimer()
+        } else {
+            _currentQuestion.value = nextQuestion
+            startCountDownTimer()
+        }
     }
 
     private fun startCountDownTimer() {
@@ -45,6 +67,6 @@ class GameViewModel : ViewModel() {
 
     companion object {
         const val SECOND: Long = 1000
-        const val QUESTION_TIME: Long = 4000
+        const val QUESTION_TIME: Long = 5000
     }
 }
