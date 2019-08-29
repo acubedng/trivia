@@ -8,8 +8,16 @@ class QuestionsGenerator {
     private val questionsList = mutableListOf(
         "What programming language was created by JetBrains™ in 2011?",
         "What is a LifeCycleOwner?",
-        "What is LiveData?"
-    )
+        "What is LiveData?",
+        "What is Context"
+    ).apply {
+        addAll(
+            """What is an Activity?
+                |What method you should override to use Android’s menu which is placed on the action bar?
+                |What is the name of the class used by Intent to store additional information?
+            """.trimMargin().split("\n")
+        )
+    }
 
     val totalQuestions = questionsList.size
 
