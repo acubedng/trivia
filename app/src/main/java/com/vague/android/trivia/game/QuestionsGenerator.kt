@@ -11,6 +11,8 @@ class QuestionsGenerator {
         "What is LiveData?"
     )
 
+    val totalQuestions = questionsList.size
+
     fun getNextQuestion(): String? {
         if (questionsList.size == 0) return null
 

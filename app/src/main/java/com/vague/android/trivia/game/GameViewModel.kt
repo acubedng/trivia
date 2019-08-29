@@ -9,6 +9,10 @@ import androidx.lifecycle.ViewModel
 
 class GameViewModel : ViewModel() {
 
+    private val _questionNum = MutableLiveData<Int>(1)
+    val questionNum: LiveData<Int>
+        get() = _questionNum
+
     private val _questionTime = MutableLiveData<Long>()
     val questionTimeString: LiveData<String>
         get() = Transformations.map(_questionTime) { timeLong ->
@@ -35,6 +39,8 @@ class GameViewModel : ViewModel() {
 
     private val questionsGenerator = QuestionsGenerator()
 
+    val totalQuestions = questionsGenerator.totalQuestions
+
     init {
         _currentQuestion.value = questionsGenerator.getNextQuestion()
         startCountDownTimer()
@@ -47,6 +53,7 @@ class GameViewModel : ViewModel() {
             stopCountDownTimer()
         } else {
             _currentQuestion.value = nextQuestion
+            _questionNum.value = _questionNum.value?.plus(1)
             startCountDownTimer()
         }
     }
@@ -67,6 +74,8 @@ class GameViewModel : ViewModel() {
 
     companion object {
         const val SECOND: Long = 1000
-        const val QUESTION_TIME: Long = 5000
+        const val QUESTION_TIME: Long = 10000
+
+        const val TAG = "GameViewModel"
     }
 }

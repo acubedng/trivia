@@ -7,4 +7,5 @@
     <string name="start_game">Start Game</string>
     <string name="skip">Skip</string>
     <string name="correct">Correct</string>
+    <string name="question_num">%d/%d</string>
 </resources>
